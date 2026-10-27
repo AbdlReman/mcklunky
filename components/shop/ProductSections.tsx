@@ -61,6 +61,7 @@ export function RecentlyViewedSection({
             name: e.name,
             brand: e.brand,
             category: "",
+            categories: [],
             categoryId: "",
             subCategory: null,
             subCategoryId: null,

@@ -172,7 +172,7 @@ export default function CartPage() {
       }
       setAppliedCoupon(data.code || couponInput.trim().toUpperCase());
       setDiscountPercent(Number(data.discountPercent || 0));
-      toast.success("Coupon applied", { description: `${data.code} · ${data.discountPercent}% off` });
+      toast.success("Coupon applied", { description: `${data.code} Â· ${data.discountPercent}% off` });
     } finally {
       setApplying(false);
     }
@@ -203,7 +203,7 @@ export default function CartPage() {
                   <div className="flex-1">
                     <h3 className="font-bold">{item.name}</h3>
                     <p className="text-sm text-gray-500">
-                      {item.color} {item.size ? `· ${item.size}` : ""}
+                      {item.color} {item.size ? `Â· ${item.size}` : ""}
                     </p>
                     <p className="font-semibold mt-1">{formatGbp(item.price)}</p>
                     <div className="flex items-center gap-3 mt-2">
@@ -259,7 +259,7 @@ export default function CartPage() {
                 onClick={() => void handleApplyCoupon()}
                 className="w-full border border-black py-2 text-sm font-bold uppercase disabled:opacity-50"
               >
-                {applying ? "Checking…" : "Apply coupon"}
+                {applying ? "Checkingâ€¦" : "Apply coupon"}
               </button>
               {appliedCoupon ? (
                 <button
@@ -279,7 +279,7 @@ export default function CartPage() {
               href={`/checkout?coupon=${encodeURIComponent(appliedCoupon)}`}
               onClick={() =>
                 toast.success("Going to checkout", {
-                  description: `${items.length} item group(s) · ${formatGbp(total)}`,
+                  description: `${items.length} item group(s) Â· ${formatGbp(total)}`,
                 })
               }
               className="block mt-5 bg-black text-white text-center py-2 font-bold uppercase text-sm"

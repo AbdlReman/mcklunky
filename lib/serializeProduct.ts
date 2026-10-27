@@ -20,27 +20,27 @@ function refId(value: unknown): string {
 
 function normalizeImages(raw: unknown): ProductImage[] {
   if (!Array.isArray(raw)) return [];
-  return raw
-    .map((item) => {
-      if (typeof item === "string") {
-        const url = item.trim();
-        return url ? { url, publicId: "", alt: "" } : null;
-      }
-      if (item && typeof item === "object") {
-        const o = item as Record<string, unknown>;
-        const url = String(o.url || "").trim();
-        if (!url) return null;
-        return {
-          url,
-          publicId: String(o.publicId || ""),
-          alt: String(o.alt || ""),
-          width: o.width != null ? Number(o.width) : undefined,
-          height: o.height != null ? Number(o.height) : undefined,
-        };
-      }
-      return null;
-    })
-    .filter((v): v is ProductImage => Boolean(v));
+  const out: ProductImage[] = [];
+  for (const item of raw) {
+    if (typeof item === "string") {
+      const url = item.trim();
+      if (url) out.push({ url, publicId: "", alt: "" });
+      continue;
+    }
+    if (item && typeof item === "object") {
+      const o = item as Record<string, unknown>;
+      const url = String(o.url || "").trim();
+      if (!url) continue;
+      out.push({
+        url,
+        publicId: String(o.publicId || ""),
+        alt: String(o.alt || ""),
+        width: o.width != null ? Number(o.width) : undefined,
+        height: o.height != null ? Number(o.height) : undefined,
+      });
+    }
+  }
+  return out;
 }
 
 function effectivePrice(p: Record<string, unknown>): {
@@ -168,26 +168,5 @@ export function serializeProductFromLean(p: Record<string, unknown>): IProduct {
 }
 
 export function toProductImageDocs(urls: unknown): ProductImage[] {
-  if (!Array.isArray(urls)) return [];
-  return urls
-    .map((item) => {
-      if (typeof item === "string") {
-        const url = item.trim();
-        return url ? { url, publicId: "", alt: "" } : null;
-      }
-      if (item && typeof item === "object") {
-        const o = item as Record<string, unknown>;
-        const url = String(o.url || "").trim();
-        if (!url) return null;
-        return {
-          url,
-          publicId: String(o.publicId || ""),
-          alt: String(o.alt || ""),
-          width: o.width != null ? Number(o.width) : undefined,
-          height: o.height != null ? Number(o.height) : undefined,
-        };
-      }
-      return null;
-    })
-    .filter((v): v is ProductImage => Boolean(v));
+  return normalizeImages(urls);
 }

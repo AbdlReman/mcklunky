@@ -55,7 +55,7 @@ function buildMonthlySeries(orders: ChartOrderPoint[]) {
     map.set(ym, (map.get(ym) || 0) + Number(o.totalAmount || 0));
   }
   const keys = Array.from(map.keys()).sort();
-  if (keys.length === 0) return [{ label: "—", revenue: 0 }];
+  if (keys.length === 0) return [{ label: "â€”", revenue: 0 }];
   return keys.map((ym) => ({
     label: ym,
     revenue: map.get(ym) || 0,

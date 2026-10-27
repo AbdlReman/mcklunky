@@ -205,7 +205,7 @@ export default function OrdersAdminClient({ orders }: { orders: AdminOrderRow[] 
                   <span className="inline-flex items-center rounded-full bg-slate-700/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-200">
                     {order.paymentStatus}
                   </span>
-                  <span className="mx-1 text-slate-600">·</span>
+                  <span className="mx-1 text-slate-600">Â·</span>
                   <span
                     className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest ${
                       order.orderStatus === "completed"
@@ -374,7 +374,7 @@ export default function OrdersAdminClient({ orders }: { orders: AdminOrderRow[] 
                     {selected.paymentTransactionId?.trim() ? (
                       <span className="text-white font-mono text-xs break-all">{selected.paymentTransactionId}</span>
                     ) : (
-                      <span className="text-slate-500">—</span>
+                      <span className="text-slate-500">â€”</span>
                     )}
                   </p>
                   {selected.paymentScreenshotUrl?.trim().startsWith("https://") ? (
@@ -399,7 +399,7 @@ export default function OrdersAdminClient({ orders }: { orders: AdminOrderRow[] 
                     <p className="text-slate-500 text-xs">No screenshot uploaded.</p>
                   )}
                   <p className="text-xs text-slate-500 pt-2 border-t border-slate-700">
-                    Payment status: {selected.paymentStatus} · Order status: {selected.orderStatus}
+                    Payment status: {selected.paymentStatus} Â· Order status: {selected.orderStatus}
                   </p>
                 </div>
               </section>
@@ -423,8 +423,8 @@ export default function OrdersAdminClient({ orders }: { orders: AdminOrderRow[] 
                       {selected.items.map((item, idx) => {
                         const qty = Math.max(1, Number(item.quantity || 1));
                         const line = Number(item.price || 0) * qty;
-                        const color = (item.color || "").trim() || "—";
-                        const size = (item.size || "").trim() || "—";
+                        const color = (item.color || "").trim() || "â€”";
+                        const size = (item.size || "").trim() || "â€”";
                         const img = (item.image || "").trim();
                         return (
                           <tr key={`${selected._id}-${idx}`} className="align-middle">

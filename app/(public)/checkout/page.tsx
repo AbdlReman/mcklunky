@@ -71,7 +71,7 @@ export default function CheckoutPage() {
     }
     setAppliedCoupon(data.code || raw);
     setDiscountPercent(Number(data.discountPercent || 0));
-    toast.success("Coupon applied", { description: `${data.code} · ${data.discountPercent}% off` });
+    toast.success("Coupon applied", { description: `${data.code} Â· ${data.discountPercent}% off` });
   }, []);
 
   useEffect(() => {
@@ -148,7 +148,7 @@ export default function CheckoutPage() {
     }
 
     setLoading(true);
-    toast.loading("Placing your order…", { id: "place-order" });
+    toast.loading("Placing your orderâ€¦", { id: "place-order" });
     let res: Response;
     try {
       res = await fetch("/api/orders", {
@@ -339,7 +339,7 @@ export default function CheckoutPage() {
             </div>
             <p className="flex justify-between">
               <span>Coupon</span>
-              <span>{appliedCoupon || "—"}</span>
+              <span>{appliedCoupon || "â€”"}</span>
             </p>
             <p className="flex justify-between">
               <span>Discount{discountPercent ? ` (${discountPercent}%)` : ""}</span>
@@ -357,10 +357,10 @@ export default function CheckoutPage() {
                 {(i.color || i.size) && (
                   <span className="text-gray-500">
                     {" "}
-                    · {i.color || "—"} / {i.size || "—"}
+                    Â· {i.color || "â€”"} / {i.size || "â€”"}
                   </span>
                 )}{" "}
-                ×{i.quantity}
+                Ã—{i.quantity}
               </p>
             ))}
           </div>
@@ -466,9 +466,9 @@ export default function CheckoutPage() {
                 onChange={(e) => void onScreenshotChange(e)}
                 className="text-sm w-full"
               />
-              {uploadingShot ? <p className="text-xs text-gray-500 mt-1">Uploading…</p> : null}
+              {uploadingShot ? <p className="text-xs text-gray-500 mt-1">Uploadingâ€¦</p> : null}
               {paymentScreenshotUrl ? (
-                <p className="text-xs text-green-700 mt-2">Screenshot attached — ready to submit.</p>
+                <p className="text-xs text-green-700 mt-2">Screenshot attached â€” ready to submit.</p>
               ) : null}
             </div>
 

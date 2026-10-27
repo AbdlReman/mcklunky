@@ -257,7 +257,7 @@ export default function ProductTable({ products }: ProductTableProps) {
                       disabled={deletingId === product._id}
                       className="text-red-400 hover:text-red-300 text-xs font-medium transition-colors disabled:opacity-50"
                     >
-                      {deletingId === product._id ? "…" : "Delete"}
+                      {deletingId === product._id ? "â€¦" : "Delete"}
                     </button>
                   </div>
                 </td>

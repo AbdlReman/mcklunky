@@ -34,8 +34,8 @@ export function buildOrderItemsTableRows(items: OrderItemInput[]): string {
   return items
     .map((item) => {
       const line = Number(item.price || 0) * Number(item.quantity || 1);
-      const color = (item.color || "").trim() || "—";
-      const size = (item.size || "").trim() || "—";
+      const color = (item.color || "").trim() || "â€”";
+      const size = (item.size || "").trim() || "â€”";
       return `<tr>
   <td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;vertical-align:middle;">${esc(item.name)}</td>
   <td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;">${esc(color)}</td>
