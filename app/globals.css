@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0c0b0a;
+  --foreground: #f5f2eb;
+  --ember: #f9b154;
+  --ember-deep: #e8922e;
+  --ink: #0c0b0a;
+  --charcoal: #161412;
+  --smoke: #2a2622;
+  --ash: #9a9288;
+  --bone: #f5f2eb;
+}
+
+@theme inline {
+  --color-ember: var(--ember);
+  --color-ember-deep: var(--ember-deep);
+  --color-ink: var(--ink);
+  --color-charcoal: var(--charcoal);
+  --color-smoke: var(--smoke);
+  --color-ash: var(--ash);
+  --color-bone: var(--bone);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+@keyframes emberPulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.75; }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-fade-in    { animation: fadeIn 0.55s ease forwards; }
+.animate-slow-zoom  { animation: slowZoom 18s ease-out forwards; }
+.animate-ember      { animation: emberPulse 4s ease-in-out infinite; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+.font-display {
+  font-family: var(--font-display), Impact, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.hero-text {
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: clamp(3.2rem, 12vw, 7.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--ember);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after { width: 100%; }
+
+.btn-primary {
+  display: inline-block;
+  background: var(--ember);
+  color: var(--ink);
+  border: 2px solid var(--ember);
+  padding: 0.9rem 2.2rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--bone);
+  border-color: var(--bone);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-block;
+  border: 2px solid var(--bone);
+  color: var(--bone);
+  background: transparent;
+  padding: 0.85rem 2.2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--ink);
+}
+
+.product-card:hover .product-img { transform: scale(1.05); }
+.product-img { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+
+.section-light {
+  background: var(--bone);
+  color: var(--ink);
+}
+
+.grain-overlay::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
